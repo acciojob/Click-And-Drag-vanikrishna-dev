@@ -9,7 +9,7 @@ slider.addEventListener('mousedown', (e) => {
   isDown = true;
   slider.classList.add('active');
 
-  startX = e.clientX; // ✅ FIX
+  startX = e.clientX; 
   scrollLeft = slider.scrollLeft;
 });
 
@@ -28,7 +28,7 @@ slider.addEventListener('mousemove', (e) => {
 
   e.preventDefault();
 
-  const x = e.clientX; // ✅ FIX
+  const x = e.clientX;
   const walk = (x - startX) * 2;
 
   slider.scrollLeft = scrollLeft - walk;
