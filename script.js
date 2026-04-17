@@ -9,7 +9,7 @@ slider.addEventListener('mousedown', (e) => {
   isDown = true;
   slider.classList.add('active');
 
-  startX = e.pageX - slider.offsetLeft;
+  startX = e.clientX; // ✅ FIX
   scrollLeft = slider.scrollLeft;
 });
 
@@ -28,8 +28,8 @@ slider.addEventListener('mousemove', (e) => {
 
   e.preventDefault();
 
-  const x = e.pageX - slider.offsetLeft;
-  const walk = (x - startX) * 1.5;
+  const x = e.clientX; // ✅ FIX
+  const walk = (x - startX) * 2;
 
   slider.scrollLeft = scrollLeft - walk;
 });
