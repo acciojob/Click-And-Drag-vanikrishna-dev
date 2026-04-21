@@ -3,26 +3,22 @@ const slider = document.querySelector('.items');
 
 let isDown = false;
 let startX;
-let scrollLeft;
 
 slider.addEventListener('mousedown', (e) => {
   isDown = true;
   slider.classList.add('active');
 
-  startX = e.pageX;
-  scrollLeft = slider.scrollLeft;
+  startX = e.pageX || e.clientX;
 });
 
 function handleMove(e) {
   if (!isDown) return;
 
-  let delta = e.pageX - startX;
+  const x = e.pageX || e.clientX;
+  const walk = x - startX;
 
-  if (!delta && e.movementX) {
-    delta = -e.movementX;
-  }
-
-  slider.scrollLeft = scrollLeft - delta * 2;
+  slider.scrollLeft -= walk;
+  startX = x;
 }
 
 slider.addEventListener('mousemove', handleMove);
