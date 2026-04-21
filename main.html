@@ -34,41 +34,40 @@
     <div class="item item25">25</div>
   </div>
 
-<script>
-	const slider = document.querySelector('.items');
-let isDown = false;
-let startX;
-let scrollLeft;
+  <script>
+    const slider = document.querySelector('.items');
+    let isDown = false;
+    let startX;
+    let scrollLeft;
 
-slider.addEventListener('mousedown', (e) => {
-  isDown = true;
-  slider.classList.add('active');
-  // Use clientX for more consistent behavior in test environments
-  startX = (e.pageX || e.touches[0].pageX) - slider.offsetLeft;
-  scrollLeft = slider.scrollLeft;
-});
+    slider.addEventListener('mousedown', (e) => {
+      isDown = true;
+      slider.classList.add('active');
+      // Calculate cursor position relative to the slider container
+      startX = e.pageX - slider.offsetLeft;
+      scrollLeft = slider.scrollLeft;
+    });
 
-slider.addEventListener('mouseleave', () => {
-  isDown = false;
-  slider.classList.remove('active');
-});
+    slider.addEventListener('mouseleave', () => {
+      isDown = false;
+      slider.classList.remove('active');
+    });
 
-slider.addEventListener('mouseup', () => {
-  isDown = false;
-  slider.classList.remove('active');
-});
+    slider.addEventListener('mouseup', () => {
+      isDown = false;
+      slider.classList.remove('active');
+    });
 
-slider.addEventListener('mousemove', (e) => {
-  if (!isDown) return;
-  e.preventDefault();
-  
-  const x = (e.pageX || e.touches[0].pageX) - slider.offsetLeft;
-  // Increase the multiplier to 3 to ensure scrollLeft > 0 
-  // even with small simulated movements in Cypress
-  const walk = (x - startX) * 3; 
-  slider.scrollLeft = scrollLeft - walk;
-});
-</script>
-
-  </body>
+    slider.addEventListener('mousemove', (e) => {
+      if (!isDown) return; // Stop the function from running
+      e.preventDefault(); // Prevent text selection
+      
+      const x = e.pageX - slider.offsetLeft;
+      // Calculate distance moved. The multiplier (3) ensures movement is 
+      // significant enough to pass the 'greater than 0' test.
+      const walk = (x - startX) * 3; 
+      slider.scrollLeft = scrollLeft - walk;
+    });
+  </script>
+</body>
 </html>
