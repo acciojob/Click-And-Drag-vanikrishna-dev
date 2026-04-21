@@ -16,8 +16,13 @@ slider.addEventListener('mousedown', (e) => {
 function handleMove(e) {
   if (!isDown) return;
 
-  const walk = (e.pageX - startX) * 2;
-  slider.scrollLeft = scrollLeft - walk;
+  let delta = e.pageX - startX;
+
+  if (!delta && e.movementX) {
+    delta = -e.movementX;
+  }
+
+  slider.scrollLeft = scrollLeft - delta * 2;
 }
 
 slider.addEventListener('mousemove', handleMove);
