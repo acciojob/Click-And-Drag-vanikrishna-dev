@@ -35,6 +35,7 @@ body {
   background: rgba(255,255,255,0.1);
   font-size: 0;
   perspective: 500px;
+  display: flex;
 }
 
 .items.active {
@@ -56,15 +57,15 @@ body {
   flex-shrink: 0;
 }
 
-.item:nth-child(9n+1) { background: dodgerblue; }
-.item:nth-child(9n+2) { background: goldenrod; }
-.item:nth-child(9n+3) { background: paleturquoise; }
-.item:nth-child(9n+4) { background: gold; }
-.item:nth-child(9n+5) { background: cadetblue; }
-.item:nth-child(9n+6) { background: tomato; }
-.item:nth-child(9n+7) { background: lightcoral; }
-.item:nth-child(9n+8) { background: darkslateblue; }
-.item:nth-child(9n+9) { background: rebeccapurple; }
+.item:nth-child(9n+1) { background: dodgerblue;}
+.item:nth-child(9n+2) { background: goldenrod;}
+.item:nth-child(9n+3) { background: paleturquoise;}
+.item:nth-child(9n+4) { background: gold;}
+.item:nth-child(9n+5) { background: cadetblue;}
+.item:nth-child(9n+6) { background: tomato;}
+.item:nth-child(9n+7) { background: lightcoral;}
+.item:nth-child(9n+8) { background: darkslateblue;}
+.item:nth-child(9n+9) { background: rebeccapurple;}
 
 .item:nth-child(even) { transform: scaleX(1.31) rotateY(40deg); }
 .item:nth-child(odd) { transform: scaleX(1.31) rotateY(-40deg); }
