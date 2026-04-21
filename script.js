@@ -1,34 +1,58 @@
 // Your code here.
-const slider = document.querySelector('.items');
+const container = document.querySelector('.items');
+const items = document.querySelectorAll('.item');
 
-let isDown = false;
-let startX = 0;
+let activeItem = null;
+let offsetX = 0;
+let offsetY = 0;
 
-slider.addEventListener('mousedown', (e) => {
-  isDown = true;
-  slider.classList.add('active');
+items.forEach((item, index) => {
+  // initial grid placement
+  const cols = 5;
+  const size = 200;
+  const gap = 20;
 
-  startX = e.pageX || e.clientX;
+  const row = Math.floor(index / cols);
+  const col = index % cols;
+
+  item.style.left = `${col * (size + gap)}px`;
+  item.style.top = `${row * (size + gap)}px`;
+
+  item.addEventListener('mousedown', (e) => {
+    activeItem = item;
+
+    const rect = item.getBoundingClientRect();
+
+    offsetX = e.clientX - rect.left;
+    offsetY = e.clientY - rect.top;
+
+    item.style.cursor = 'grabbing';
+  });
 });
 
-slider.addEventListener('mousemove', (e) => {
-  if (!isDown) return;
+document.addEventListener('mousemove', (e) => {
+  if (!activeItem) return;
 
-  const currentX = e.pageX || e.clientX;
+  const containerRect = container.getBoundingClientRect();
 
-  const diff = startX - currentX;
+  let x = e.clientX - containerRect.left - offsetX;
+  let y = e.clientY - containerRect.top - offsetY;
 
-  slider.scrollLeft += diff;
+  // boundaries
+  const maxX = container.clientWidth - activeItem.offsetWidth;
+  const maxY = container.clientHeight - activeItem.offsetHeight;
 
-  startX = currentX;
+  x = Math.max(0, Math.min(x, maxX));
+  y = Math.max(0, Math.min(y, maxY));
+
+  activeItem.style.left = `${x}px`;
+  activeItem.style.top = `${y}px`;
 });
 
-slider.addEventListener('mouseup', () => {
-  isDown = false;
-  slider.classList.remove('active');
+document.addEventListener('mouseup', () => {
+  if (activeItem) {
+    activeItem.style.cursor = 'grab';
+  }
+  activeItem = null;
 });
-
-slider.addEventListener('mouseleave', () => {
-  isDown = false;
-  slider.classList.remove('active');
 });
