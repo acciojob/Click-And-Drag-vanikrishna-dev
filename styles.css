@@ -1,6 +1,6 @@
 html {
   box-sizing: border-box;
-  background: #222;
+  background: #333;
   background-size: cover;
 }
 
@@ -13,23 +13,20 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: sans-serif;
   margin: 0;
 }
 
 .items {
-  height: 450px;
-  width: 90%;
+  height: 500px;
+  width: 100%;
   padding: 50px;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  overflow-x: scroll;
+  overflow-x: scroll; 
   overflow-y: hidden;
   white-space: nowrap;
   user-select: none;
   cursor: grab;
   background: rgba(255, 255, 255, 0.1);
-  transition: transform 0.2s;
-  perspective: 1000px;
+  transition: all 0.2s;
   scrollbar-width: none; 
 }
 
@@ -38,25 +35,24 @@ body {
 }
 
 .items.active {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.3);
   cursor: grabbing;
   transform: scale(1.01);
 }
 
 .item {
   width: 200px;
-  height: 300px;
+  height: calc(100% - 40px);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 50px;
+  font-size: 80px;
   font-weight: 100;
-  color: rgba(255, 255, 255, 0.5);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  color: rgba(0, 0, 0, 0.15);
+  box-shadow: inset 0 0 0 10px rgba(0, 0, 0, 0.15);
   margin-right: 20px;
 }
 
-/* Colors and Rotation Effect */
 .item:nth-child(9n+1) { background: dodgerblue;}
 .item:nth-child(9n+2) { background: goldenrod;}
 .item:nth-child(9n+3) { background: paleturquoise;}
@@ -66,6 +62,3 @@ body {
 .item:nth-child(9n+7) { background: lightcoral;}
 .item:nth-child(9n+8) { background: darkslateblue;}
 .item:nth-child(9n+9) { background: rebeccapurple;}
-
-.item:nth-child(even) { transform: rotateY(15deg); }
-.item:nth-child(odd) { transform: rotateY(-15deg); }
