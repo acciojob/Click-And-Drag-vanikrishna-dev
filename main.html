@@ -43,7 +43,6 @@
     slider.addEventListener('mousedown', (e) => {
       isDown = true;
       slider.classList.add('active');
-      // Calculate cursor position relative to the slider container
       startX = e.pageX - slider.offsetLeft;
       scrollLeft = slider.scrollLeft;
     });
@@ -59,13 +58,10 @@
     });
 
     slider.addEventListener('mousemove', (e) => {
-      if (!isDown) return; // Stop the function from running
-      e.preventDefault(); // Prevent text selection
-      
+      if (!isDown) return;
+      e.preventDefault();
       const x = e.pageX - slider.offsetLeft;
-      // Calculate distance moved. The multiplier (3) ensures movement is 
-      // significant enough to pass the 'greater than 0' test.
-      const walk = (x - startX) * 3; 
+      const walk = (x - startX) * 3;
       slider.scrollLeft = scrollLeft - walk;
     });
   </script>
