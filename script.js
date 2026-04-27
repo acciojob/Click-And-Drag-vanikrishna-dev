@@ -1,47 +1,32 @@
-// Your code here.
-const container = document.querySelector('.items');
-const items = document.querySelectorAll('.item');
+const slider = document.querySelector('.items');
 
-const cols = 5;
-const gap = 10;
-const size = 100;
+let isDown = false;
+let startX;
+let scrollLeft;
 
-items.forEach((item, index) => {
-  const row = Math.floor(index / cols);
-  const col = index % cols;
-  item.style.left = `${col * (size + gap)}px`;
-  item.style.top = `${row * (size + gap)}px`;
+slider.addEventListener('mousedown', (e) => {
+  isDown = true;
+  slider.style.cursor = 'grabbing';
+  startX = e.pageX - slider.offsetLeft;
+  scrollLeft = slider.scrollLeft;
 });
 
-let current = null;
-let offsetX = 0;
-let offsetY = 0;
-
-items.forEach(item => {
-  item.addEventListener('mousedown', (e) => {
-    current = item;
-    offsetX = e.clientX - item.offsetLeft;
-    offsetY = e.clientY - item.offsetTop;
-    item.style.cursor = 'grabbing';
-  });
+slider.addEventListener('mouseleave', () => {
+  isDown = false;
+  slider.style.cursor = 'grab';
 });
 
-document.addEventListener('mousemove', (e) => {
-  if (!current) return;
-
-  const rect = container.getBoundingClientRect();
-
-  let x = e.clientX - rect.left - offsetX;
-  let y = e.clientY - rect.top - offsetY;
-
-  x = Math.max(0, Math.min(x, container.clientWidth - current.offsetWidth));
-  y = Math.max(0, Math.min(y, container.clientHeight - current.offsetHeight));
-
-  current.style.left = `${x}px`;
-  current.style.top = `${y}px`;
+slider.addEventListener('mouseup', () => {
+  isDown = false;
+  slider.style.cursor = 'grab';
 });
 
-document.addEventListener('mouseup', () => {
-  if (current) current.style.cursor = 'grab';
-  current = null;
+slider.addEventListener('mousemove', (e) => {
+  if (!isDown) return;
+  e.preventDefault();
+
+  const x = e.pageX - slider.offsetLeft;
+  const walk = (x - startX) * 2;
+
+  slider.scrollLeft = scrollLeft - walk;
 });
