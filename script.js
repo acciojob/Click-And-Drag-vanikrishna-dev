@@ -8,18 +8,23 @@ document.addEventListener('DOMContentLoaded', () => {
   slider.addEventListener('mousedown', (e) => {
     isDown = true;
     slider.classList.add('dragging');
-    startX = e.clientX;
+    startX = e.pageX;
     scrollStart = slider.scrollLeft;
   });
 
-  document.addEventListener('mouseup', () => {
+  slider.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    const walk = startX - e.pageX;
+    slider.scrollLeft = scrollStart + walk;
+  });
+
+  slider.addEventListener('mouseup', () => {
     isDown = false;
     slider.classList.remove('dragging');
   });
 
-  document.addEventListener('mousemove', (e) => {
-    if (!isDown) return;
-    const walk = startX - e.clientX;
-    slider.scrollLeft = scrollStart + walk;
+  slider.addEventListener('mouseleave', () => {
+    isDown = false;
+    slider.classList.remove('dragging');
   });
 });
