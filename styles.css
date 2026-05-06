@@ -22,7 +22,7 @@ html, body {
   overflow: hidden;
 }
 
-.item {
+.items {
   position: absolute;
   width: 100px;
   height: 100px;
@@ -40,8 +40,7 @@ html, body {
   user-select: none;
   -webkit-user-drag: none;
 }
-
-.item.dragging {
+.items.dragging {
   cursor: grabbing;
   transform: scale(1.04);
   box-shadow: 0 12px 28px rgba(20,40,80,0.18);
