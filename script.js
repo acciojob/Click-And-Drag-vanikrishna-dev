@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const container = document.getElementById('container');
-  const cubes = Array.from(container.querySelectorAll('.items'));
+  const cubes = Array.from(container.querySelectorAll('.items, .item'));
   const size = 100;
   const gap = 12;
 

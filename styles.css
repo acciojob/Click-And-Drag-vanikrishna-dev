@@ -10,9 +10,8 @@ html, body {
   -webkit-user-select: none;
   user-select: none;
 }
-
 .container {
-  width: 720px; 
+  width: 720px;
   height: 420px;
   padding: 12px;
   border-radius: 8px;
@@ -21,8 +20,7 @@ html, body {
   position: relative;
   overflow: hidden;
 }
-
-.items {
+.items, .item {
   position: absolute;
   width: 100px;
   height: 100px;
@@ -40,7 +38,7 @@ html, body {
   user-select: none;
   -webkit-user-drag: none;
 }
-.items.dragging {
+.items.dragging, .item.dragging {
   cursor: grabbing;
   transform: scale(1.04);
   box-shadow: 0 12px 28px rgba(20,40,80,0.18);
