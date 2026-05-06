@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   slider.addEventListener('mousedown', (e) => {
     isDown = true;
     slider.classList.add('dragging');
-    startX = e.pageX - slider.offsetLeft;
+    startX = e.clientX;
     scrollStart = slider.scrollLeft;
   });
 
@@ -19,9 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.addEventListener('mousemove', (e) => {
     if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - slider.offsetLeft;
-    const walk = startX - x;
+    const walk = startX - e.clientX;
     slider.scrollLeft = scrollStart + walk;
   });
 });

@@ -29,19 +29,21 @@ html, body {
   overflow-y: hidden;
   cursor: grab;
   scroll-behavior: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .items.dragging {
   cursor: grabbing;
 }
 .item {
-  flex: 0 0 100px;
-  height: 100px;
+  flex: 0 0 200px;
+  height: 200px;
   background: linear-gradient(135deg, #6fb1ff, #2b7bff);
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
+  font-size: 24px;
   border-radius: 10px;
   box-shadow: 0 6px 16px rgba(20,40,80,0.12);
   pointer-events: none;
